@@ -1,90 +1,66 @@
 # International Job Board Scraper
 
-## Project Status
+![Run Job Filter](https://github.com/miandavn/international-job-board-scraper/actions/workflows/run-job-filter.yml/badge.svg)
 
-🚧 **In development**
+A working recruitment automation prototype that filters structured vacancy data according to defined role, location, language and working-model criteria.
 
-This project explores how automation can support a more structured and efficient international job search.
+## Project status
 
-The goal is to develop a workflow that can monitor selected job platforms for relevant Talent Acquisition, Recruiting Operations, HR Technology and recruitment process-improvement opportunities.
+✅ Working prototype
 
-## The Problem
+The current version uses fictional sample data and does not scrape live job boards. It demonstrates the filtering, duplicate-detection, reporting and automation logic that could form part of a broader job-market monitoring workflow.
 
-Manually searching multiple job platforms is repetitive and time-consuming. Relevant vacancies can also be difficult to identify when job titles differ between employers.
+## The problem
 
-This project explores how automation could:
+Searching multiple job platforms manually is repetitive and time-consuming. Relevant vacancies can be difficult to identify when job titles, working models and terminology vary between employers.
 
-* Search selected sources at scheduled intervals
-* Apply relevant locations and job-search keywords
-* Organise vacancies into a structured format
-* Reduce duplicate results
-* Highlight opportunities that meet predefined criteria
-* Reduce repetitive manual searching
+This project explores how a structured workflow can:
 
-## Intended Search Criteria
+- Apply consistent job-search criteria
+- Identify relevant English-language vacancies
+- Filter opportunities by location and working model
+- Focus on selected HR and recruitment categories
+- Remove duplicate results
+- Explain why each vacancy matched
+- Produce a structured CSV report
+- Run automatically through GitHub Actions
 
-The initial search will focus on:
+## How it works
 
-* Talent Acquisition
-* Talent Acquisition Operations
-* Recruiting Operations
-* HR Technology
-* Recruitment Process Improvement
-* HR Digital Transformation
-* HR Workflow Automation
+1. Fictional vacancy data is stored in `data/sample_jobs.csv`.
+2. `job_filter.py` reads and evaluates each vacancy.
+3. The script applies predefined recruitment criteria.
+4. Duplicate vacancies are removed.
+5. Matching jobs receive a plain-language match reason.
+6. Results are saved to `output/matching_jobs.csv`.
+7. GitHub Actions runs the workflow automatically when the script or sample data changes.
 
-Target locations include:
+## Current search criteria
 
-* Düsseldorf and the surrounding region
-* Cologne and the surrounding region
-* Remote opportunities within Germany
-* Selected opportunities in the Netherlands
+The demonstration currently looks for:
 
-The project will prioritise roles that can be performed primarily in English.
+- English-language opportunities
+- Roles based in Germany
+- Remote roles anywhere in Germany
+- Hybrid roles in Düsseldorf or Cologne
+- Opportunities in:
+  - Talent Acquisition
+  - Recruiting Operations
+  - HR Technology
+  - HR Operations
 
-## Planned Technology
+The criteria are intentionally defined in the Python script so they can be reviewed and changed easily.
 
-The project is expected to explore:
+## Repository structure
 
-* GitHub Actions
-* Python
-* APIs and structured data collection
-* Scheduled workflows
-* Keyword filtering
-* Duplicate identification
-* CSV or spreadsheet output
-
-## Planned Development Stages
-
-1. Define role, location and language criteria
-2. Select appropriate public data sources
-3. Build an initial data-collection workflow
-4. Organise results into a consistent format
-5. Add keyword and location filters
-6. Add duplicate detection
-7. Schedule the workflow with GitHub Actions
-8. Document limitations and future improvements
-
-## Current Learning Objectives
-
-Through this project, I am developing practical knowledge of:
-
-* GitHub repositories
-* GitHub Actions
-* Python-based automation
-* Workflow configuration
-* Data collection and organisation
-* Testing and troubleshooting
-* Responsible use of publicly available information
-
-## Responsible Use
-
-The project will only use information that can be accessed appropriately and will respect relevant platform conditions, privacy requirements and technical limitations.
-
-No personal candidate information, confidential employer information or proprietary company data will be stored in this repository.
-
-## Background
-
-I am an internationally experienced Talent Acquisition professional expanding my technical capabilities in AI and workflow automation.
-
-This project combines my understanding of recruitment with my interest in developing practical digital solutions that reduce repetitive work and improve access to useful information.
+```text
+international-job-board-scraper/
+├── .github/
+│   └── workflows/
+│       └── run-job-filter.yml
+├── data/
+│   └── sample_jobs.csv
+├── output/
+│   └── matching_jobs.csv
+├── job_filter.py
+└── README.md
