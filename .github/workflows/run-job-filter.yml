@@ -1,0 +1,34 @@
+name: Run Job Filter
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "job_filter.py"
+      - "data/sample_jobs.csv"
+      - ".github/workflows/run-job-filter.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  filter-jobs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run job filter
+        run: python job_filter.py
+
+      - name: Upload matching jobs
+        uses: actions/upload-artifact@v4
+        with:
+          name: matching-jobs
+          path: output/matching_jobs.csv
